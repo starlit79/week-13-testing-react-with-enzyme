@@ -28,7 +28,9 @@ function OrderedList(props) {
 
   return (
     <ol className="options">
-      {options.map(option => <OrderedListOption key={option} value={option} />)}
+      {
+        options.map(option => <OrderedListOption key={option} value={option} />)
+      }
     </ol>
   );
 }

@@ -3,7 +3,7 @@ import './App.css';
 import Login from './components/Login'
 import OrderedList from './components/OrderedList';
 
-const petNames = ['Hat', 'Mia', 'Bear', 'Kat', 'Max', 'Mister Miyagi', 'Pikachu'];
+const petNames = [];
 
 function App() {
   return (

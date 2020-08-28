@@ -3,7 +3,7 @@ import { shallow, mount, render } from '../../enzyme';
 
 import OrderedList from '../OrderedList';
 
-describe('Our test suite', () => {
+describe('Ordered List generic List Component', () => {
 
     it('renders all the mocked animal options', () => {
         const animals = ['duck', 'bear', 'whale'];
@@ -33,5 +33,12 @@ describe('Our test suite', () => {
         const wrapper = mount(<OrderedList options={animals} />);
 
         expect(wrapper.find('.value').get(0).props.children).toEqual('duck');
+    });
+
+    it('renders correct text when there are no animals in the petNames', () => {
+        const animals = ['Nothing to see here. Move along.'];
+        const wrapper = mount(<OrderedList options={animals} />);
+
+        expect(wrapper.find('.value').get(0).props.children).toEqual('Nothing to see here. Move along.');
     });
 });

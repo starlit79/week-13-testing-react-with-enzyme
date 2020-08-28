@@ -12,7 +12,7 @@ import { shallow, mount, render } from '../../enzyme';
 import Login from '../Login'
 
 /**
-
+    test for each part of component
     `describe` and `it` are part of "jest" and are installed as global variables.
 
     "jest" is installed as part of CRA
