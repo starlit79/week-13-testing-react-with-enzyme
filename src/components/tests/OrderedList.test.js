@@ -1,44 +1,49 @@
-import React from 'react';
-import { shallow, mount, render } from '../../enzyme';
+import React from "react";
+import { shallow, mount, render } from "../../enzyme";
 
-import OrderedList from '../OrderedList';
+import OrderedList from "../OrderedList";
 
-describe('Ordered List generic List Component', () => {
+describe("Ordered List Component", () => {
+  it("renders all the mocked animal options", () => {
+    const animals = ["duck", "bear", "whale"];
 
-    it('renders all the mocked animal options', () => {
-        const animals = ['duck', 'bear', 'whale'];
+    const wrapper = render(<OrderedList options={animals} />);
 
-        const wrapper = render(<OrderedList options={animals} />);
+    expect(wrapper.find(".options")).toBeDefined();
+    expect(wrapper.find(".value")).toHaveLength(animals.length);
+  });
 
-        expect(wrapper.find('.options')).toBeDefined();
-        expect(wrapper.find('.value')).toHaveLength(animals.length);
-    });
+  it("renders no animal options", () => {
+    const animals = [];
+    const wrapper = shallow(<OrderedList options={animals} />);
 
-    it('renders no animal options', () => {
-        const animals = [];
-        const wrapper = shallow(<OrderedList options={animals} />);
+    expect(wrapper.find(".empty").exists()).toBe(true);
+  });
 
-        expect(wrapper.find('.empty').exists()).toBe(true);
-    });
+  it("renders the text if there are no animals", () => {
+    const animals = [];
+    const wrapper = shallow(<OrderedList options={animals} />);
 
-    it('renders a single animal option', () => {
-        const animals = ['duck'];
-        const wrapper = mount(<OrderedList options={animals} />);
+    expect(wrapper.text()).toEqual('Nothing to see here. Move along.')
+  });
 
-        expect(wrapper.contains(<li key='duck' className="value">duck</li >)).toBeTruthy();
-    });
+  it("renders a single animal option", () => {
+    const animals = ["duck"];
+    const wrapper = mount(<OrderedList options={animals} />);
 
-    it('renders correct text in animal option', () => {
-        const animals = ['duck', 'bear', 'whale'];
-        const wrapper = mount(<OrderedList options={animals} />);
+    expect(
+      wrapper.contains(
+        <li key="duck" className="value">
+          duck
+        </li>
+      )
+    ).toBeTruthy();
+  });
 
-        expect(wrapper.find('.value').get(0).props.children).toEqual('duck');
-    });
+  it("renders correct text in animal option", () => {
+    const animals = ["duck", "bear", "whale"];
+    const wrapper = mount(<OrderedList options={animals} />);
 
-    it('renders correct text when there are no animals in the petNames', () => {
-        const animals = ['Nothing to see here. Move along.'];
-        const wrapper = mount(<OrderedList options={animals} />);
-
-        expect(wrapper.find('.value').get(0).props.children).toEqual('Nothing to see here. Move along.');
-    });
+    expect(wrapper.find(".value").get(0).props.children).toEqual("duck");
+  });
 });
